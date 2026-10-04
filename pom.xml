@@ -28,12 +28,6 @@
     </properties>
 
     <dependencies>
-        <!-- SVD Parser for reading CMSIS-SVD files -->
-		<dependency>
-		    <groupId>io.github.antoniovazquezblanco</groupId>
-		    <artifactId>svd-parser</artifactId>
-		    <version>${svd-parser.version}</version>
-		</dependency>
 		<dependency>
 		    <groupId>info.picocli</groupId>
 		    <artifactId>picocli</artifactId>

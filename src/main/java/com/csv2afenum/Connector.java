@@ -10,10 +10,12 @@ public class Connector {
     private String[]          alternate;
     private ArrayList<String> functions;
     private String            name;
+    private String            namespace;
     
-    public Connector(String[] alternate, ArrayList<String> functions) {
+    public Connector(String[] alternate, ArrayList<String> functions, String namespace) {
         this.alternate = alternate;
         this.functions = functions;
+        this.namespace = namespace;
         if (alternate.length > 0) {
             name = alternate[0];
         }
@@ -36,7 +38,7 @@ public class Connector {
             for (var func = 1; func < alternate.length; func++) {
                 if (! alternate[func].equals("-")) {
                     for (var s : alternate[func].split("/")) {
-                       writer.append(String.format("%s%s%s = Stm32::Enum::GPIOx::AFR::%s,\n", TAB, TAB, s, functions.get(func-1)));
+                       writer.append(String.format("%s%s%s = %s%s,\n", TAB, TAB, s, namespace, functions.get(func-1)));
                     }
                 }
             }

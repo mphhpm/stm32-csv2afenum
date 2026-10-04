@@ -20,12 +20,9 @@ public class csv2afenum implements Runnable {
     @Option(names = {"-f", "--File"}, description = "Path to svd file", required = true)
     private String filename;
 
-    @Option(names = {"-o", "--OutputDirectory"}, description = "Path to place the generated data")
-    private String outputDirectory;
+    @Option(names = {"-n", "--Namespace"}, description = "Namespace prefix e.g. Stm32::Enum::GPIOx::AFR::")
+    private String namespace = "Stm32::Enum::GPIOx::AFR::";
 
-    @Option(names = {"-t", "--Task"}, description = "task to be executed: gdbinit ")
-    private String task;
-	
 	@Override
 	public void run() {
         try {
@@ -52,7 +49,7 @@ public class csv2afenum implements Runnable {
                         }
                         else {
                             if (values.length > 0) {
-                                var connector = new Connector(values, functions);
+                                var connector = new Connector(values, functions, namespace);
                                 connectors.add(connector);
                             }
                         }
